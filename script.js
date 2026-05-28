@@ -1,10 +1,3 @@
-/**
- * Portfolio JavaScript
- * Client: Dilki Sanjana
- * Features: Light/Dark Mode, Canvas Particle Background, Scrolling Animations, 
- *           GitHub activity grid generation, Skills filtering, Counters, Form processing.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   
   // ==========================================
@@ -18,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.style.opacity = '0';
         setTimeout(() => {
           preloader.style.display = 'none';
-          // Initialize AOS here once preloader is gone to avoid jumpy starts
+          
           if (typeof AOS !== 'undefined') {
             AOS.init({
               duration: 800,
@@ -28,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }
         }, 500);
-      }, 800); // Small buffer for visual comfort
+      }, 800); 
     });
   }
 
