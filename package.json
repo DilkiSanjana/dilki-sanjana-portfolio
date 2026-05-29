@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "react-github-calendar": "^5.0.6",
+    "typed.js": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
