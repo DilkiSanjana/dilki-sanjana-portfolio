@@ -1362,37 +1362,6 @@ textarea.form-control-custom {
   margin-top: 50px;
 }
 
-.github-grid-scroll {
-  overflow-x: auto;
-  padding-bottom: 10px;
-}
-
-.github-grid-wrap {
-  min-width: 680px;
-  background: rgba(17, 34, 64, 0.4);
-  border: 1px solid var(--border-color-soft);
-  border-radius: var(--border-radius-md);
-  padding: 20px;
-}
-
-.github-grid-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.github-grid-header h5 {
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.github-grid-header h5 i {
-  color: var(--text-primary);
-}
 
 .github-contrib-total {
   font-size: 0.75rem;
@@ -1445,69 +1414,8 @@ textarea.form-control-custom {
   pointer-events: none;
 }
 
-.github-grid {
-  display: grid;
-  grid-template-flow: column;
-  grid-template-columns: repeat(27, 1fr);
-  gap: 4px;
-}
 
-.github-col {
-  display: grid;
-  grid-template-rows: repeat(7, 1fr);
-  gap: 4px;
-}
 
-.github-box {
-  width: 14px;
-  height: 14px;
-  border-radius: 2px;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.1s ease;
-}
-
-.github-box:hover {
-  transform: scale(1.2);
-  z-index: 10;
-}
-
-/* Tooltip standard styles built into github squares */
-.github-box::before {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.github-box:hover::before {
-  transform: translateX(-50%) scale(1);
-}
-
-.git-level-0 { background-color: rgba(255,255,255,0.05); }
-.git-level-1 { background-color: #0e4429; }
-.git-level-2 { background-color: #006d32; }
-.git-level-3 { background-color: #26a641; }
-.git-level-4 { background-color: #39d353; }
-
-/* Light Theme overrides for GitHub boxes */
-[data-theme="light"] .git-level-0 { background-color: rgba(0,0,0,0.05); }
-[data-theme="light"] .git-level-1 { background-color: #c6e48b; }
-[data-theme="light"] .git-level-2 { background-color: #7bc96f; }
-[data-theme="light"] .git-level-3 { background-color: #239a3b; }
-[data-theme="light"] .git-level-4 { background-color: #196127; }
 
 /* --- Interactive CV Modal --- */
 .resume-modal .modal-content {
