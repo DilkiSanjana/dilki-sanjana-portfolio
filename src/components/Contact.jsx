@@ -12,6 +12,7 @@ export default function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
   const [submittedName, setSubmittedName] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress).then(() => {
@@ -32,34 +33,60 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.subject || !formState.message) {
       return;
     }
 
     setIsSending(true);
+    setErrorMessage('');
+    setSentSuccess(false);
     setSubmittedName(formState.name);
 
-    // Simulate API request (1.5s delay)
-    setTimeout(() => {
-      setIsSending(false);
-      setSentSuccess(true);
-      
-      // Reset form fields
-      setFormState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+    // Read Access Key from environment variable or fallback to a placeholder
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '88a07616-0ced-4402-8026-061b2a47071a';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          from_name: 'Portfolio Contact Form'
+        })
       });
 
-      // Clear success notification after 4 seconds
-      setTimeout(() => {
-        setSentSuccess(false);
-      }, 4000);
+      const data = await response.json();
 
-    }, 1500);
+      if (response.ok && data.success) {
+        setSentSuccess(true);
+        setFormState({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        setTimeout(() => {
+          setSentSuccess(false);
+        }, 5000);
+      } else {
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Email submission error:', error);
+      setErrorMessage('Failed to send message. Please check your internet connection and try again.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -120,7 +147,7 @@ export default function Contact() {
                     </div>
                     <div className="contact-info-details">
                       <h5>Location</h5>
-                      <p>kottawagama, Galle, Sri Lanka</p>
+                      <p>Galle, Sri Lanka</p>
                     </div>
                   </div>
                 </div>
@@ -222,6 +249,12 @@ export default function Contact() {
                 {sentSuccess && (
                   <div className="alert alert-success mt-3" role="alert">
                     <strong>Success!</strong> Hi {submittedName}, your message has been delivered. I will get back to you shortly!
+                  </div>
+                )}
+
+                {errorMessage && (
+                  <div className="alert alert-danger mt-3" role="alert">
+                    <strong>Error!</strong> {errorMessage}
                   </div>
                 )}
               </form>
