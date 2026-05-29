@@ -120,7 +120,7 @@ export default function Contact() {
                     </div>
                     <div className="contact-info-details">
                       <h5>Location</h5>
-                      <p>kottawagama, Galle, Sri Lanka</p>
+                      <p>Galle, Sri Lanka</p>
                     </div>
                   </div>
                 </div>
