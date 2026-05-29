@@ -3,7 +3,7 @@ export default function Projects() {
     {
       title: 'Rental Management System',
       desc: 'A mobile-based app targeting property listings and tenant-owner transactions. Designed to make the agreement generation process easier.',
-      image: '/assets/images/project-rental.png',
+      image: `${import.meta.env.BASE_URL}assets/images/project-rental.png`,
       features: [
         'Mobile property searches and detail views.',
         'Separate user roles for tenants and property owners.',
@@ -20,7 +20,7 @@ export default function Projects() {
     {
       title: 'Medical Appointment Scheduler',
       desc: 'A web application created to simplify clinic appointments, scheduling slots for doctors, and handling patient logs.',
-      image: '/assets/images/project-medical.png',
+      image: `${import.meta.env.BASE_URL}assets/images/project-medical.png`,
       features: [
         'Clean UI dashboard for appointment booking logs.',
         'CRUD operations for patient registration and medical details.',
