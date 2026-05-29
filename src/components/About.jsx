@@ -1,56 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
+import { GitHubCalendar } from 'react-github-calendar';
 
 const GITHUB_USER = 'DilkiSanjana';
-const CONTRIBUTIONS_API = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}?y=last`;
 
-export default function About() {
+export default function About({ theme }) {
   const statsRef = useRef(null);
   const [hasStartedCounting, setHasStartedCounting] = useState(false);
   const [stats, setStats] = useState({ projects: 0, tech: 0, certs: 0 });
-
-  // --- Real GitHub contribution state ---
-  const [githubData, setGithubData] = useState(null);   // array of {date,count,level}
-  const [ghLoading, setGhLoading] = useState(true);
-  const [ghError, setGhError] = useState(false);
-  const [totalContribs, setTotalContribs] = useState(0);
-
-  // Fetch real contributions on mount
-  useEffect(() => {
-    setGhLoading(true);
-    fetch(CONTRIBUTIONS_API)
-      .then((r) => {
-        if (!r.ok) throw new Error('Network error');
-        return r.json();
-      })
-      .then((json) => {
-        const all = json.contributions || [];
-        // Keep only the most-recent 189 days (27 weeks × 7 days)
-        const recent = all.slice(-189);
-        setGithubData(recent);
-        const total = recent.reduce((sum, d) => sum + d.count, 0);
-        setTotalContribs(total);
-        setGhLoading(false);
-      })
-      .catch(() => {
-        setGhError(true);
-        setGhLoading(false);
-      });
-  }, []);
-
-  // Build column-based grid from the flat daily array
-  const buildColumns = (days) => {
-    // Pad the front so the first day lands on the correct weekday column
-    const firstDow = new Date(days[0].date).getDay(); // 0=Sun
-    const padded = [
-      ...Array(firstDow).fill(null),
-      ...days,
-    ];
-    const cols = [];
-    for (let i = 0; i < padded.length; i += 7) {
-      cols.push(padded.slice(i, i + 7));
-    }
-    return cols;
-  };
 
   // Animated counters
   useEffect(() => {
@@ -83,13 +39,10 @@ export default function About() {
     return () => clearInterval(interval);
   }, [hasStartedCounting]);
 
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const formatDate = (dateStr) => {
-    const d = new Date(dateStr);
-    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  const selectLastHalfYear = contributions => {
+    // Display roughly the last 6 months (26 weeks = 182 days)
+    return contributions.slice(-182);
   };
-
-  const columns = githubData ? buildColumns(githubData) : [];
 
   return (
     <section id="about" className="section-spacing">
@@ -151,14 +104,11 @@ export default function About() {
 
             {/* Real GitHub Contributions Board */}
             <div className="github-mock-container" data-aos="fade-up" data-aos-delay="300">
-              <div className="github-grid-wrap">
-                <div className="github-grid-header">
-                  <h5>
-                    <i className="fab fa-github"></i>
+              <div className="github-grid-wrap" style={{ overflowX: 'auto', padding: '1.5rem', background: 'var(--card-bg)', borderRadius: 'var(--border-radius-md)' }}>
+                <div className="github-grid-header d-flex justify-content-between align-items-center mb-3">
+                  <h5 className="mb-0 d-flex align-items-center gap-2">
+                    <i className="fab fa-github" style={{ color: 'var(--text-primary)' }}></i>
                     {' '}GitHub Contribution Activity
-                    {!ghLoading && !ghError && (
-                      <span className="github-contrib-total">{totalContribs} contributions</span>
-                    )}
                   </h5>
                   <a
                     href={`https://github.com/${GITHUB_USER}`}
@@ -166,61 +116,31 @@ export default function About() {
                     rel="noopener noreferrer"
                     className="github-profile-link"
                     title={`View ${GITHUB_USER} on GitHub`}
+                    style={{ fontSize: '0.8rem', color: 'var(--color-primary)', textDecoration: 'none' }}
                   >
                     <i className="bi bi-box-arrow-up-right"></i> View Profile
                   </a>
                 </div>
 
-                <div className="github-grid-scroll">
-                  {ghLoading && (
-                    <div className="github-loading">
-                      <div className="spinner-border spinner-border-sm" role="status"></div>
-                      <span>Loading contributions…</span>
-                    </div>
-                  )}
-
-                  {ghError && (
-                    <div className="github-error">
-                      <i className="bi bi-exclamation-triangle"></i> Could not load contribution data.
-                    </div>
-                  )}
-
-                  {!ghLoading && !ghError && (
-                    <div className="github-grid" id="githubMockGrid">
-                      {columns.map((col, colIdx) => (
-                        <div key={colIdx} className="github-col">
-                          {col.map((cell, cellIdx) => {
-                            if (!cell) {
-                              return <div key={cellIdx} className="github-box git-level-0 github-box-empty" />;
-                            }
-                            const commitText = cell.count === 0
-                              ? 'No contributions'
-                              : `${cell.count} contribution${cell.count > 1 ? 's' : ''}`;
-                            return (
-                              <div
-                                key={cellIdx}
-                                className={`github-box git-level-${cell.level}`}
-                                data-tooltip={`${commitText} on ${formatDate(cell.date)}`}
-                              />
-                            );
-                          })}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                <div style={{ overflowX: 'auto', paddingBottom: '10px', width: '100%' }}>
+                  <GitHubCalendar 
+                    username={GITHUB_USER} 
+                    colorScheme={theme === 'dark' ? 'dark' : 'light'}
+                    transformData={selectLastHalfYear}
+                    labels={{
+                      totalCount: '{{count}} contributions in the last half year',
+                    }}
+                    theme={{
+                      light: ['rgba(0,0,0,0.05)', '#c6e48b', '#7bc96f', '#239a3b', '#196127'],
+                      dark: ['rgba(255,255,255,0.05)', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                    }}
+                    style={{
+                      color: 'var(--text-primary)',
+                      fontFamily: 'var(--font-body)',
+                      margin: '0 auto',
+                    }}
+                  />
                 </div>
-
-                {!ghLoading && !ghError && (
-                  <div className="d-flex justify-content-end align-items-center gap-2 mt-2 text-muted small">
-                    <span>Less</span>
-                    <div className="github-box git-level-0"></div>
-                    <div className="github-box git-level-1"></div>
-                    <div className="github-box git-level-2"></div>
-                    <div className="github-box git-level-3"></div>
-                    <div className="github-box git-level-4"></div>
-                    <span>More</span>
-                  </div>
-                )}
               </div>
             </div>
           </div>
