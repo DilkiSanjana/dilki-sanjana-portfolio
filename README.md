@@ -21,41 +21,6 @@ A modern, responsive, and interactive personal portfolio showcasing my projects,
 - **GitHub Integration:** `react-github-calendar`
 - **Icons:** Bootstrap Icons, FontAwesome
 
-## 🛠️ Getting Started
-
-To get a local copy up and running, follow these simple steps:
-
-### Prerequisites
-
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/DilkiSanjana/dilki-sanjana-portfolio.git
-   ```
-
-2. **Navigate into the project directory**
-   ```bash
-   cd dilki-sanjana-portfolio
-   ```
-
-3. **Install the dependencies**
-   ```bash
-   npm install
-   ```
-
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser**
-   Visit `http://localhost:5173` (or the port specified in your terminal) to view the portfolio.
-
-## 📂 Project Structure
-
 ```text
 src/
 ├── assets/         # Images, PDFs, and static assets
@@ -64,17 +29,6 @@ src/
 ├── main.jsx        # React entry point
 └── index.css       # Global styles, variables, and theme definitions
 ```
-
-## 🌐 Live Demo
-
-*You can add a link to your live hosted project here (e.g., Vercel, Netlify, or GitHub Pages).*
-
-## 🤝 Let's Connect
-
-- **LinkedIn:** [linkedin.com/in/dilkisanjana](https://www.linkedin.com/in/dilkisanjana/)
-- **GitHub:** [github.com/DilkiSanjana](https://github.com/DilkiSanjana)
-- **Email:** pkdilki.sanjana@gmail.com
-
 ---
 
 Designed and built by [Dilki Sanjana](https://github.com/DilkiSanjana).
