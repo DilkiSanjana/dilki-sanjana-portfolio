@@ -79,7 +79,7 @@ export default function Hero() {
               </div>
               
               <div className="hero-profile-wrapper">
-                <img src="/assets/images/profile.jpg" alt="Dilki Sanjana Headshot" className="hero-profile-image" />
+                <img src={`${import.meta.env.BASE_URL}assets/images/profile.jpg`} alt="Dilki Sanjana Headshot" className="hero-profile-image" />
               </div>
             </div>
           </div>
