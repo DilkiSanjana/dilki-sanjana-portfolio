@@ -45,7 +45,7 @@ export default function App() {
         <Hero />
 
         {/* About Me Section */}
-        <About />
+        <About theme={theme} />
 
         {/* Skills Section */}
         <Skills />
