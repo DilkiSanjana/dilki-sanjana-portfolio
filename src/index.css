@@ -15,7 +15,7 @@
   --bg-tertiary: #1b2e4f;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
-  --text-muted: #8892b0;
+  --text-muted: #a8b8d0;
   
   /* Neon Accents & Gradients */
   --color-primary: #64ffda; /* Aqua/Teal */
@@ -30,7 +30,7 @@
   
   /* Borders & Shadows */
   --border-color: rgba(100, 255, 218, 0.1);
-  --border-color-soft: rgba(255, 255, 255, 0.05);
+  --border-color-soft: rgba(255, 255, 255, 0.12);
   --card-bg: rgba(17, 34, 64, 0.65);
   --card-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
   --card-glow: rgba(0, 180, 216, 0.15);
@@ -214,6 +214,11 @@ a:hover {
   z-index: 0;
   pointer-events: none;
   opacity: 0.75;
+}
+
+/* --- Bootstrap Override: .text-muted must use our custom variable --- */
+.text-muted {
+  color: var(--text-muted) !important;
 }
 
 /* --- Utility Classes --- */
@@ -1387,6 +1392,57 @@ textarea.form-control-custom {
 
 .github-grid-header h5 i {
   color: var(--text-primary);
+}
+
+.github-contrib-total {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  background: rgba(100, 255, 218, 0.08);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.github-profile-link {
+  font-size: 0.8rem;
+  font-family: var(--font-headings);
+  font-weight: 500;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.github-profile-link:hover {
+  color: var(--color-primary);
+}
+
+.github-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 20px 0;
+}
+
+.github-error {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.github-box-empty {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .github-grid {
