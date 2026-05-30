@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Preloader from './components/Preloader';
-import ParticleCanvas from './components/ParticleCanvas';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -33,8 +32,6 @@ export default function App() {
       {/* 1. Preloader Screen */}
       <Preloader />
 
-      {/* 2. Particle Canvas Background */}
-      <ParticleCanvas theme={theme} />
 
       {/* 3. Header & Navigation */}
       <Navbar theme={theme} toggleTheme={toggleTheme} />

@@ -44,7 +44,6 @@ export default function Contact() {
     setSentSuccess(false);
     setSubmittedName(formState.name);
 
-    // Read Access Key from environment variable or fallback to a placeholder
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '88a07616-0ced-4402-8026-061b2a47071a';
 
     try {
@@ -68,16 +67,8 @@ export default function Contact() {
 
       if (response.ok && data.success) {
         setSentSuccess(true);
-        setFormState({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-        
-        setTimeout(() => {
-          setSentSuccess(false);
-        }, 5000);
+        setFormState({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => { setSentSuccess(false); }, 5000);
       } else {
         setErrorMessage(data.message || 'Something went wrong. Please try again.');
       }
@@ -90,175 +81,188 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-spacing">
+    <section id="contact" className="contact-section">
       <div className="container">
-        <div className="section-title-container text-center" data-aos="fade-up">
-          <span className="section-subtitle">Get In Touch</span>
-          <h2 className="section-title">Contact</h2>
+
+        {/* Section Label */}
+        <div className="contact-label" data-aos="fade-up">
+          <span className="contact-label-text">05 / CONTACT</span>
         </div>
-        
-        <div className="row g-4 align-items-stretch">
-          {/* Left details card */}
-          <div className="col-lg-5" data-aos="fade-right" data-aos-delay="100">
-            <div className="glass-card h-100 d-flex flex-column justify-content-between">
-              <div>
-                <h3 className="h4 mb-3 gradient-text-accent">Let's Discuss Internships!</h3>
-                <p className="text-muted mb-4">
-                  I'm actively searching for internship opportunities in Software Engineering and DevOps roles. Let's connect!
-                </p>
-                
-                <div className="contact-info-list">
-                  <div className="contact-info-item">
-                    <div className="contact-info-icon">
-                      <i className="bi bi-envelope-fill"></i>
-                    </div>
-                    <div className="contact-info-details">
-                      <h5>Email</h5>
-                      <p 
-                        id="email-address" 
-                        onClick={handleCopyEmail} 
-                        style={{ cursor: 'pointer' }}
-                        title="Click to copy"
-                      >
-                        {copied ? (
-                          <>
-                            <i className="bi bi-check-circle-fill text-success"></i> Copied!
-                          </>
-                        ) : (
-                          emailAddress
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="contact-info-item">
-                    <div className="contact-info-icon">
-                      <i className="bi bi-telephone-fill"></i>
-                    </div>
-                    <div className="contact-info-details">
-                      <h5>Phone</h5>
-                      <p>+94 76 847 9203</p>
-                    </div>
-                  </div>
-                  
-                  <div className="contact-info-item">
-                    <div className="contact-info-icon">
-                      <i className="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <div className="contact-info-details">
-                      <h5>Location</h5>
-                      <p>Galle, Sri Lanka</p>
-                    </div>
-                  </div>
+
+        {/* Heading */}
+        <div className="contact-heading" data-aos="fade-up" data-aos-delay="50">
+          <h2 className="contact-main-title">Let's Build Together</h2>
+          <p className="contact-sub-text">
+            Have a project in mind? I'd love to hear from you. Let's create something extraordinary.
+          </p>
+        </div>
+
+        {/* Two Column Layout */}
+        <div className="contact-grid">
+
+          {/* Left: Get in Touch */}
+          <div className="contact-info-card" data-aos="fade-right" data-aos-delay="100">
+            <h3 className="contact-info-title">Get in Touch</h3>
+
+            <div className="contact-info-rows">
+              {/* Email */}
+              <div
+                className="contact-info-row"
+                onClick={handleCopyEmail}
+                style={{ cursor: 'pointer' }}
+                title="Click to copy email"
+              >
+                <div className="contact-row-icon">
+                  <i className="bi bi-envelope-fill"></i>
+                </div>
+                <div className="contact-row-details">
+                  <span className="contact-row-label">EMAIL</span>
+                  <span className="contact-row-value">
+                    {copied ? (
+                      <><i className="bi bi-check-circle-fill" style={{ color: '#64ffda' }}></i> Copied!</>
+                    ) : emailAddress}
+                  </span>
                 </div>
               </div>
-              
-              <div className="pt-4 border-top border-color-soft mt-4">
-                <span className="d-block text-muted small mb-2 text-uppercase">Check my networks:</span>
-                <div className="d-flex gap-3">
-                  <a href="https://www.linkedin.com/in/dilkisanjana/" target="_blank" rel="noopener noreferrer" className="social-icon-btn" title="LinkedIn">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="https://github.com/DilkiSanjana" target="_blank" rel="noopener noreferrer" className="social-icon-btn" title="GitHub">
-                    <i className="fab fa-github"></i>
-                  </a>
+
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/dilkisanjana/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-info-row contact-info-row-link"
+              >
+                <div className="contact-row-icon contact-row-icon-linkedin">
+                  <i className="fab fa-linkedin-in"></i>
+                </div>
+                <div className="contact-row-details">
+                  <span className="contact-row-label">LINKEDIN</span>
+                  <span className="contact-row-value">dilkisanjana</span>
+                </div>
+              </a>
+
+              {/* GitHub */}
+              <a
+                href="https://github.com/DilkiSanjana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-info-row contact-info-row-link"
+              >
+                <div className="contact-row-icon contact-row-icon-github">
+                  <i className="fab fa-github"></i>
+                </div>
+                <div className="contact-row-details">
+                  <span className="contact-row-label">GITHUB</span>
+                  <span className="contact-row-value">DilkiSanjana</span>
+                </div>
+              </a>
+
+              {/* Location */}
+              <div className="contact-info-row">
+                <div className="contact-row-icon contact-row-icon-location">
+                  <i className="bi bi-geo-alt-fill"></i>
+                </div>
+                <div className="contact-row-details">
+                  <span className="contact-row-label">LOCATION</span>
+                  <span className="contact-row-value">Sri Lanka <span className="contact-country-flag">🇱🇰</span></span>
                 </div>
               </div>
+            </div>
+
+            {/* Social Icons */}
+            <div className="contact-social-row">
+              <a href="https://github.com/DilkiSanjana" target="_blank" rel="noopener noreferrer" className="contact-social-btn" title="GitHub">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/dilkisanjana/" target="_blank" rel="noopener noreferrer" className="contact-social-btn" title="LinkedIn">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href={`mailto:${emailAddress}`} className="contact-social-btn" title="Email">
+                <i className="bi bi-envelope-fill"></i>
+              </a>
             </div>
           </div>
-          
-          {/* Right Form card */}
-          <div className="col-lg-7" data-aos="fade-left" data-aos-delay="200">
-            <div className="glass-card h-100">
-              <h3 className="h4 mb-4">Send Me a Message</h3>
-              <form id="contactForm" onSubmit={handleSubmit} noValidate>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-floating-custom">
-                      <input 
-                        type="text" 
-                        className="form-control-custom" 
-                        id="name" 
-                        placeholder=" " 
-                        value={formState.name}
-                        onChange={handleInputChange}
-                        required 
-                      />
-                      <label className="form-label-custom" htmlFor="name">Your Name</label>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating-custom">
-                      <input 
-                        type="email" 
-                        className="form-control-custom" 
-                        id="email" 
-                        placeholder=" " 
-                        value={formState.email}
-                        onChange={handleInputChange}
-                        required 
-                      />
-                      <label className="form-label-custom" htmlFor="email">Your Email</label>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-floating-custom">
-                  <input 
-                    type="text" 
-                    className="form-control-custom" 
-                    id="subject" 
-                    placeholder=" " 
-                    value={formState.subject}
-                    onChange={handleInputChange}
-                    required 
-                  />
-                  <label className="form-label-custom" htmlFor="subject">Subject</label>
-                </div>
-                <div className="form-floating-custom">
-                  <textarea 
-                    className="form-control-custom" 
-                    id="message" 
-                    placeholder=" " 
-                    value={formState.message}
+
+          {/* Right: Form */}
+          <div className="contact-form-card" data-aos="fade-left" data-aos-delay="200">
+            <form id="contactForm" onSubmit={handleSubmit} noValidate>
+              <div className="contact-form-row">
+                <div className="contact-field-group">
+                  <label className="contact-field-label" htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    className="contact-field-input"
+                    id="name"
+                    placeholder="Full Name"
+                    value={formState.name}
                     onChange={handleInputChange}
                     required
-                  ></textarea>
-                  <label className="form-label-custom" htmlFor="message">Message Details</label>
+                  />
                 </div>
-                
-                <button 
-                  type="submit" 
-                  className="btn-premium-primary w-100 justify-content-center py-3"
-                  disabled={isSending}
-                >
-                  {isSending ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...
-                    </>
-                  ) : sentSuccess ? (
-                    <>
-                      <i className="bi bi-check-circle-fill me-2"></i> Sent!
-                    </>
-                  ) : (
-                    <>
-                      <i className="bi bi-send-fill me-2"></i> Send
-                    </>
-                  )}
-                </button>
+                <div className="contact-field-group">
+                  <label className="contact-field-label" htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    className="contact-field-input"
+                    id="email"
+                    placeholder="name@example.com"
+                    value={formState.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
 
-                {sentSuccess && (
-                  <div className="alert alert-success mt-3" role="alert">
-                    <strong>Success!</strong> Hi {submittedName}, your message has been delivered. I will get back to you shortly!
-                  </div>
-                )}
+              <div className="contact-field-group">
+                <label className="contact-field-label" htmlFor="subject">Subject</label>
+                <input
+                  type="text"
+                  className="contact-field-input"
+                  id="subject"
+                  placeholder="Project Inquiry"
+                  value={formState.subject}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-                {errorMessage && (
-                  <div className="alert alert-danger mt-3" role="alert">
-                    <strong>Error!</strong> {errorMessage}
-                  </div>
+              <div className="contact-field-group">
+                <label className="contact-field-label" htmlFor="message">Message</label>
+                <textarea
+                  className="contact-field-input contact-field-textarea"
+                  id="message"
+                  placeholder="Tell me about your project..."
+                  value={formState.message}
+                  onChange={handleInputChange}
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="contact-send-btn"
+                disabled={isSending}
+              >
+                {isSending ? (
+                  <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...</>
+                ) : sentSuccess ? (
+                  <><i className="bi bi-check-circle-fill me-2"></i> Sent!</>
+                ) : (
+                  <>Send Message &nbsp;→</>
                 )}
-              </form>
-            </div>
+              </button>
+
+              {sentSuccess && (
+                <div className="contact-alert contact-alert-success" role="alert">
+                  <strong>Success!</strong> Hi {submittedName}, your message has been delivered. I will get back to you shortly!
+                </div>
+              )}
+              {errorMessage && (
+                <div className="contact-alert contact-alert-danger" role="alert">
+                  <strong>Error!</strong> {errorMessage}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </div>
