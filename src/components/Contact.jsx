@@ -205,7 +205,7 @@ export default function Contact() {
                     type="email"
                     className="contact-field-input"
                     id="email"
-                    placeholder="name@example.com"
+                    placeholder="name@gmail.com"
                     value={formState.email}
                     onChange={handleInputChange}
                     required
