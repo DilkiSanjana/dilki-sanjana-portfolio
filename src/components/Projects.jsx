@@ -28,7 +28,7 @@ export default function Projects() {
         'Local file handling storage for appointment entries.'
       ],
       tags: ['Java', 'Spring Boot', 'HTML/CSS', 'JavaScript'],
-      github: 'https://github.com/DilkiSanjana',
+      github: 'https://github.com/DilkiSanjana/Web-E-channeling-System.git',
       demo: '#',
       demoOffline: true,
       aosFade: 'fade-left'
