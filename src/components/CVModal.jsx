@@ -28,9 +28,9 @@ export default function CVModal() {
 
               {/* Print Resume Sections */}
               <div className="mb-4">
-                <h4 className="h5 text-primary border-bottom border-color-soft pb-2 mb-3">Professional Summary</h4>
+                <h4 className="h5 text-primary border-bottom border-color-soft pb-2 mb-3">Summary</h4>
                 <p className="small text-secondary">
-                  Motivated undergraduate specializing in Software Engineering with strong interest in DevOps, Cloud Computing, CI/CD pipelines, deployment automation, monitoring, and system reliability engineering. Eager to apply software principles and automation tools in internship positions.
+                  Motivated undergraduate specializing in Software Engineering with strong interest in DevOps, Cloud Computing and system reliability engineering. Eager to apply software principles and automation tools in internship positions.
                 </p>
               </div>
 
@@ -69,7 +69,7 @@ export default function CVModal() {
                     <strong className="text-white">Frameworks & DBs:</strong> Spring Boot, Node.js, Express, React Native, MongoDB, MySQL
                   </div>
                   <div className="col-md-4 mb-2">
-                    <strong className="text-white">DevOps & Clouds:</strong> Git/GitHub, Docker (Basics), CI/CD workflows, Linux Terminal, AWS (Basics)
+                    <strong className="text-white">DevOps & Clouds:</strong> Git/GitHub
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function CVModal() {
             <div className="modal-footer">
               <button type="button" className="btn-premium-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" className="btn-premium-primary" onClick={() => window.print()}>
-                <i className="bi bi-printer-fill"></i> Print / Save as PDF
+                <i className="bi bi-printer-fill"></i> Download
               </button>
             </div>
           </div>
