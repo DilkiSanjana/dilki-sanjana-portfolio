@@ -12,7 +12,7 @@ export default function Projects() {
         'Controlled code base using Git repositories.'
       ],
       tags: ['React Native', 'Node.js', 'Express.js', 'MongoDB'],
-      github: 'https://github.com/DilkiSanjana',
+      github: 'https://github.com/DilkiSanjana/RentEase-Mobile-App.git',
       demo: '#',
       demoOffline: true,
       aosFade: 'fade-right'
