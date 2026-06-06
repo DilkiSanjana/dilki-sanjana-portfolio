@@ -17,7 +17,6 @@ export default function CVModal() {
                 <p className="text-secondary mb-2">Software Engineering Undergraduate | Aspiring DevOps Engineer</p>
                 <div className="d-flex justify-content-center gap-3 text-muted small flex-wrap">
                   <span><i className="bi bi-envelope"></i> pkdilki.sanjana@gmail.com</span>
-                  <span><i className="bi bi-telephone"></i> +94 76 847 9203</span>
                   <span><i className="bi bi-geo-alt"></i> Kottawagama, Galle, Sri Lanka</span>
                 </div>
                 <div className="d-flex justify-content-center gap-3 text-muted small mt-1">
